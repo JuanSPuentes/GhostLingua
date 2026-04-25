@@ -10,6 +10,7 @@ Thumbs.db
 
 # Electron build artifacts (If you decide to package later)
 dist/
+dist-exe/
 release/
 
 # Logs

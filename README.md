@@ -1,5 +1,7 @@
 # GhostLingua 👻
 
+![GhostLingua Demo](gifexample.gif)
+
 **GhostLingua** is a premium, real-time translation bridge for desktop. Type in Spanish and have your thoughts typed across any chat application (Discord, Slack, Browsers, etc.) in English automatically.
 
 ## 🚀 Key Features
@@ -22,7 +24,7 @@ Create a `.env` file in the root directory:
 # Example for OpenRouter
 BASE_URL=https://openrouter.ai/api/v1
 API_KEY=your_key_here
-MODEL_NAME=google/gemini-2.0-flash-exp
+MODEL_NAME=google/gemini-2.5-flash
 
 # Example for OpenAI
 # BASE_URL=https://api.openai.com/v1
@@ -49,8 +51,8 @@ npm install
 5. **Send to Chat:** Press **Enter**. The translation will be pasted into the chat and the GhostLingua bar will clear for your next thought.
 6. **Hide:** Press `Esc` or the hotkey again to hide the window.
 
-## 🛡️ Privacy
-All processing happens through your chosen provider. Your API keys stay in your local `.env` file.
+## 🛡️ License & Commercial Use
+This software is protected by a **Proprietary License**. All rights reserved to the author. Commercial use, redistribution, or modification without explicit permission is strictly prohibited. See the `LICENSE` file for more details.
 
 ---
-*Created with ❤️ for global communication.*
+*Created with ❤️ by Juan S. Puentes for global communication.*
