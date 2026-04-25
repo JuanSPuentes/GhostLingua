@@ -5,26 +5,40 @@ const previewField = document.getElementById('preview');
 
 let debounceTimer;
 
-inputField.addEventListener('input', (e) => {
+inputField.addEventListener('input', async (e) => {
     const text = e.target.value;
     
+    // 1. Translation PREVIEW (Fast update in the bar)
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
+    debounceTimer = setTimeout(async () => {
         if (text.trim() === '') {
             previewField.innerText = 'Translation preview will appear here...';
             return;
         }
-        
-        // Call translation logic
-        translateText(text);
-    }, 500);
+        await translateText(text);
+    }, 300);
 });
+
+// Helper to find the difference between two translation versions
+function calculateDelta(oldFull, newFull) {
+    if (!oldFull) return newFull;
+    if (newFull.startsWith(oldFull)) {
+        return newFull.substring(oldFull.length);
+    }
+    // Fallback: just return the new trailing words
+    const oldWords = oldFull.split(' ');
+    const newWords = newFull.split(' ');
+    return newWords.slice(oldWords.length).join(' ');
+}
 
 inputField.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const translatedText = previewField.innerText;
         if (translatedText && translatedText !== 'Translating...' && translatedText !== 'Translation preview will appear here...') {
+            // Send the final translation
             ipcRenderer.send('send-translation', translatedText);
+            
+            // Clear the bar for the next message
             inputField.value = '';
             previewField.innerText = 'Translation preview will appear here...';
         }

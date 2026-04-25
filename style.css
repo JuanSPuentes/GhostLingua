@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 :root {
-    --bg-color: rgba(15, 15, 20, 0.7);
+    --bg-color: #1a1a1e;
     --accent-color: #a855f7;
     --text-color: #ffffff;
-    --secondary-text: rgba(255, 255, 255, 0.5);
-    --input-bg: rgba(255, 255, 255, 0.05);
+    --secondary-text: rgba(255, 255, 255, 0.4);
+    --input-bg: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -28,12 +28,13 @@ body {
 .container {
     width: 600px;
     background: var(--bg-color);
-    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
     animation: slideIn 0.3s ease-out;
+    -webkit-app-region: drag; /* ENABLE DRAGGING */
+    cursor: move;
 }
 
 @keyframes slideIn {
@@ -80,6 +81,8 @@ input {
     font-size: 1.1rem;
     outline: none;
     transition: all 0.2s ease;
+    -webkit-app-region: no-drag; /* DISABLE DRAGGING ON INPUT */
+    cursor: text;
 }
 
 input:focus {
