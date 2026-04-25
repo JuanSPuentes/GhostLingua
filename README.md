@@ -4,23 +4,35 @@
 
 ## 🚀 Key Features
 
-- **Invisibility Mode:** Captures the previous active window and restores focus automatically to ensure your text lands exactly where it should.
-- **Live Streaming:** Detects when you stop typing for a brief moment and injects the translated chunk as you go.
-- **Seamless Injection:** Uses a Clipboard + Ctrl+V method for 100% compatibility across all modern apps and browsers.
-- **Premium UI:** Now featuring a solid, movable dark theme. Drag the window anywhere on your screen.
-- **AI Powered:** Integrated with OpenRouter/Gemini for human-like, contextual translations.
+- **Universal Compatibility:** Support for any OpenAI-compatible API (OpenAI, OpenRouter, Groq, Mistral, Ollama, etc.).
+- **Invisibility Mode:** Captures the previous active window and ensures the text lands exactly in your chat input.
+- **Manual Control:** Type naturally and press **Enter** to translate, paste, and clear—perfect for multi-message conversations.
+- **Premium UI:** Solid dark theme, draggable window, and minimalist design.
+- **No-Flicker Injection:** Fast focused-pasting system using Clipboard + Ctrl+V logic.
 
 ## 🛠️ Setup
 
 ### 1. Requirements
 - Node.js installed.
-- An OpenRouter API Key.
+- An API Key from your preferred provider.
 
 ### 2. Configuration
 Create a `.env` file in the root directory:
 ```env
-OPENROUTER_API_KEY=your_key_here
+# Example for OpenRouter
+BASE_URL=https://openrouter.ai/api/v1
+API_KEY=your_key_here
 MODEL_NAME=google/gemini-2.0-flash-exp
+
+# Example for OpenAI
+# BASE_URL=https://api.openai.com/v1
+# API_KEY=your_openai_key
+# MODEL_NAME=gpt-4o
+
+# Example for Local LLM (Ollama)
+# BASE_URL=http://localhost:11434/v1
+# API_KEY=ollama
+# MODEL_NAME=llama3
 ```
 
 ### 3. Installation
@@ -31,19 +43,14 @@ npm install
 ## 🎮 Usage
 
 1. **Start the app:** `npm start`
-2. **Focus your Chat:** Click on the text box of the app you want to chat in.
+2. **Focus your Chat:** Click on the text box of the app you want to chat in (e.g. Discord, Chrome).
 3. **Summon GhostLingua:** Press `Alt + Shift + G`.
 4. **Type naturally:** Write your message in Spanish.
-5. **Auto-Inject:** Pause for 1.2 seconds, and GhostLingua will automatically paste the translated fragment into the chat.
-6. **Finish:** Press **Enter** to send the final part and close the bar.
-
-## ⌨️ Shortcuts
-- `Alt + Shift + G`: Show / Hide GhostLingua.
-- `Enter`: Inject final text and stay open (or press again to close).
-- `Esc`: Hide the window immediately.
+5. **Send to Chat:** Press **Enter**. The translation will be pasted into the chat and the GhostLingua bar will clear for your next thought.
+6. **Hide:** Press `Esc` or the hotkey again to hide the window.
 
 ## 🛡️ Privacy
-All processing happens locally through Electron. Your API keys are stored in your private `.env` file.
+All processing happens through your chosen provider. Your API keys stay in your local `.env` file.
 
 ---
 *Created with ❤️ for global communication.*
