@@ -15,22 +15,40 @@ async function translateUniversal(text, targetLang = 'English') {
     }
 
     try {
-        // Build the full endpoint carefully
         const endpoint = `${baseUrl.replace(/\/$/, '')}/chat/completions`;
+
+        // Riva-specific language mapping (Simplified for es/en)
+        let systemContent = `You are a professional translator. Translate the following text into ${targetLang}. Return ONLY the translation, without quotes or additional comments.`;
+        
+        if (model.toLowerCase().includes('riva')) {
+            // Riva models expect a language pair like "en-es" or "es-en"
+            const langCodes = {
+                'english': 'en',
+                'spanish': 'es',
+                'french': 'fr',
+                'german': 'de'
+            };
+            const targetCode = langCodes[targetLang.toLowerCase()] || 'en';
+            // Assuming source is Spanish if target is English, and vice versa
+            const sourceCode = targetCode === 'en' ? 'es' : 'en';
+            systemContent = `${sourceCode}-${targetCode}`;
+        }
 
         const response = await axios.post(endpoint, {
             model: model,
             messages: [
                 {
                     role: "system",
-                    content: `You are a professional translator. Translate the following text into ${targetLang}. Return ONLY the translation, without quotes or additional comments.`
+                    content: systemContent
                 },
                 {
                     role: "user",
                     content: text
                 }
             ],
-            temperature: 0.3
+            temperature: 0.2, // Lower temperature is better for Riva translate
+            top_p: 1.0,
+            max_tokens: 1024
         }, {
             headers: {
                 'Authorization': `Bearer ${apiKey}`,
